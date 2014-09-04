@@ -23,12 +23,10 @@ fav_team = teamString["user_team"]
 word = teamString["user_verb"]
 adjective = teamString["user_adjective"]
 
-
-# Prompt the user for 3 integers
 # One Array to store the information
-
 user_int = []
 
+# Prompt the user for 3 integers
 score_win = raw_input("Enter a number above 14: ")
 score_lose = raw_input("Enter a number under 14: ")
 year_int = raw_input("Enter a number above 2015: ")
@@ -40,7 +38,7 @@ user_int.append("year_int")
 
 
 
-# 2 mathematical operators --use a randomizor to pick the winner
+# 2 mathematical operators
 
 
 
@@ -52,30 +50,35 @@ winner = "Green Bay Packers"
 top_teams = ["Broncos ", "49ers ", "Eagles ", "Patriots", "Colts ", "Saints ", "Falcons ", "Chiefs"]
 tonights_teams = ["Packers", "Seahawks"]
 
-
+# use a randomizor to pick the winner of tonights game
 # 1 Function that must return a value and have 2 parameters
-def randomTeam():
+# this randomizer will dynamically return things
+def randomizer(b,c):
     import random
-    a = random.randint(0,7)
-    return top_teams[a]
+    a = random.randint(0,b)
+    return c[a]
 
-random_team = randomTeam()
+
+random_team = randomizer(len(top_teams), top_teams)
 print random_team
 
+#tonights_pick = randomizer(len(tonights_teams), tonights_teams)
+#print tonights_pick
+
 # tonights game winner generator
-def tonightsWinner():
-    import random
-    a = random.randint(0, 1)
-    return tonights_teams[a]
-tonights_pick = tonightsWinner()
-print tonights_pick
+# def tonightsWinner():
+#     import random
+#     a = random.randint(0, 1)
+#     return tonights_teams[a]
+# tonights_pick = tonightsWinner()
+# print tonights_pick
 
 # 2 Conditional statements (if)
 # if not the Packers or the Seahawks print message_1
 if fav_team == "Packers" or fav_team  == "Seahawks":
     message_1 = '''
-        The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks. The {tonights_pick}
-        will win this game and go on to play in the Superbowl. If your {fav_team} are fortunate enough make it to the
+        The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks. The
+        {tonights_pick} will win this game and go on to play in the Superbowl. If your {fav_team} are fortunate enough make it to the
         Superbowl, they will be defeated by the {winner} by a score of {score_win} - {score_lose}. The next time they
         will have an opportunity will be in {year_int}.
     '''
