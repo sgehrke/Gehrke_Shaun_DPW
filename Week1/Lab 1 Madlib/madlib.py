@@ -48,7 +48,9 @@ winner = "Green Bay Packers"
 
 
 top_teams = ["Broncos ", "49ers ", "Eagles ", "Patriots", "Colts ", "Saints ", "Falcons ", "Chiefs"]
+length_top_teams = len(top_teams)
 tonights_teams = ["Packers", "Seahawks"]
+length_tonights_teams = len(tonights_teams)
 
 # use a randomizor to pick the winner of tonights game
 # 1 Function that must return a value and have 2 parameters
@@ -56,14 +58,15 @@ tonights_teams = ["Packers", "Seahawks"]
 def randomizer(b,c):
     import random
     a = random.randint(0,b)
+    print "the random number is", str(a)
     return c[a]
 
 
-random_team = randomizer(len(top_teams), top_teams)
+random_team = randomizer(length_top_teams, top_teams)
 print random_team
 
-#tonights_pick = randomizer(len(tonights_teams), tonights_teams)
-#print tonights_pick
+tonights_pick = randomizer(length_tonights_teams, tonights_teams)
+print tonights_pick
 
 # tonights game winner generator
 # def tonightsWinner():
@@ -78,9 +81,9 @@ print random_team
 if fav_team == "Packers" or fav_team  == "Seahawks":
     message_1 = '''
         The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks. The
-        {tonights_pick} will win this game and go on to play in the Superbowl. If your {fav_team} are fortunate enough make it to the
-        Superbowl, they will be defeated by the {winner} by a score of {score_win} - {score_lose}. The next time they
-        will have an opportunity will be in {year_int}.
+        {tonights_pick} will win this game and go on to play in the Superbowl. If your {fav_team} are fortunate enough
+        make it to the Superbowl, they will be defeated by the {winner} by a score of {score_win} - {score_lose}. The
+        next time they will have an opportunity will be in {year_int}.
     '''
     message_1 = message_1.format(**locals())
     print message_1
