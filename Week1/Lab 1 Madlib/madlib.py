@@ -23,7 +23,7 @@ fav_team = teamString["user_team"].upper()
 word = teamString["user_place"]
 adjective = teamString["user_adjective"]
 
-if fav_team not "PACKERS":
+if fav_team != "PACKERS":
     winner = "Green Bay Packers"
 
 
@@ -38,8 +38,11 @@ year_int = user_int.append(raw_input("Enter a number above 2015: "))
 
 print user_int
 
-if user_int
-
+if user_int[0] > 20:
+    #win turns into dominated
+    win = "dominated"
+else:
+    win = "win"
 # 1 more mathematical operators
 
 
@@ -65,22 +68,14 @@ print random_team
 tonights_pick = randomizer(length_tonights_teams, tonights_teams)
 print tonights_pick
 
-# tonights game winner generator
-# def tonightsWinner():
-#     import random
-#     a = random.randint(0, 1)
-#     return tonights_teams[a]
-# tonights_pick = tonightsWinner()
-# print tonights_pick
 
-# 2 Conditional statements (if)
 # if not the Packers or the Seahawks print message_1
 # if fav_team == "PACKERS" and tonights_pick == "PACKERS":
 message_1 = '''
-    The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks at {word}. The
-    {tonights_pick} will win this game and go on to be {adjective}. The {fav_team} will play the {random_team}
-    and win by a score of {user_int[0]} - {user_int[1]}. The next time they will have an opportunity to play in a
-    Superbowl will be in {user_int[2]}.
+    The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks at the {word} stadium. The
+    {tonights_pick} will {win} this game and go on have a {adjective} season. Your {fav_team} will play the {random_team}
+    and in this years super bowl and win by a score of {user_int[0]} - {user_int[1]}. The next time they will have an opportunity
+    to play in a Superbowl will be in {user_int[2]}.
 '''
 message_1 = message_1.format(**locals())
 print message_1
