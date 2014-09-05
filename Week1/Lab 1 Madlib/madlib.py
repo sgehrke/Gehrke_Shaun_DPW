@@ -14,21 +14,17 @@ teamString = {
     "user_adjective": raw_input("Enter a descriptive word: ")
     }
 
-
+# 1 for loop that changes all items to uppercase
+for i in teamString:
+    print teamString[i].lower()
 
 
 
 # Getting the responses and storing them in variables
-fav_team = teamString["user_team"]
+fav_team = teamString["user_team"].upper()
 place = teamString["user_place"]
 adjective = teamString["user_adjective"]
 
-# 1 for loop that changes all items to uppercase
-for i in teamString:
-    print teamString[i].upper()
-
-if fav_team != "PACKERS":
-    winner = "Green Bay Packers"
 
 
 # One Array to store the information
@@ -40,7 +36,6 @@ score_lose = user_int.append(raw_input("Enter a number under 14: "))
 year_int = user_int.append(raw_input("Enter a number above 2015: "))
 
 
-print user_int
 
 if user_int[0] > 20:
     #win turns into dominated
@@ -62,7 +57,7 @@ def randomizer(b,c):
     a = random.randint(0,b)
     print b
     print "the random number is", str(a)
-    return c[a]
+    return c[a].upper()
 
 
 random_team = randomizer(length_top_teams, top_teams)
