@@ -20,7 +20,7 @@ teamString = {
 
 # Getting the responses and storing them in variables
 fav_team = teamString["user_team"].upper()
-word = teamString["user_place"]
+place = teamString["user_place"]
 adjective = teamString["user_adjective"]
 
 if fav_team != "PACKERS":
@@ -70,36 +70,26 @@ print tonights_pick
 
 
 # if not the Packers or the Seahawks print message_1
-# if fav_team == "PACKERS" and tonights_pick == "PACKERS":
-message_1 = '''
-    The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks at the {word} stadium. The
-    {tonights_pick} will {win} this game and go on have a {adjective} season. Your {fav_team} will play the {random_team}
-    and in this years super bowl and win by a score of {user_int[0]} - {user_int[1]}. The next time they will have an opportunity
-    to play in a Superbowl will be in {user_int[2]}.
-'''
-message_1 = message_1.format(**locals())
-print message_1
+if tonights_pick == fav_team:
+    message_1 = '''
+        The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks at the {place}
+        stadium. The {tonights_pick} will {win} this game and go on have a {adjective} season. Your {fav_team} will play
+        the {random_team} in this years super bowl and win by a score of {user_int[0]} - {user_int[1]}. The next time
+        they will have an opportunity to play in a Superbowl will be in {user_int[2]}.
+    '''
+    message_1 = message_1.format(**locals())
+    print message_1
 
-# elif fav_team == "SEAHAWKS":
-#     message_2 = '''
-#         The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks at (place). The
-#         {tonights_pick} will win this game and go on to in the Superbowl. If your {fav_team} are fortunate enough
-#         make it to the Superbowl, they will play {random_team} and win/lose by a score of {user_int[1]} - {score_lose}. The
-#         next time they will have an opportunity to play in a Superbowl will be in {year_int}.
-#     '''
-#     message_2 = message_2.format(**locals())
-#     print message_2
-#
-# # else the Packers print message_2
-# message_2 = '''
-#
-#     '''
-# print message_2
-#
-# # if the Seahawks print message_3
-# message_3 = '''
-#
-#     '''
-# print message_3
+else:
+    message_2 = '''
+        The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks at the {place}
+        stadium. The {tonights_pick} will {win} this game and go on have a {adjective} season. Your {fav_team} will play
+        the {random_team} in this years super bowl and win by a score of {user_int[0]} - {user_int[1]}. The next time
+        they will have an opportunity to play in a Superbowl will be in {user_int[2]}.
+    '''
+    message_2 = message_2.format(**locals())
+    print message_2
+
+
 
 
