@@ -37,12 +37,6 @@ year_int = user_int.append(raw_input("Enter a number above 2015: "))
 
 
 
-win = ["dominate", "barley win", "impede their will in "]
-
-
-
-
-
 top_teams = ["Broncos", "49ers", "Eagles", "Patriots", "Colts", "Saints", "Falcons", "Chiefs"]
 length_top_teams = len(top_teams)
 tonights_teams = ["Packers", "Seahawks"]
@@ -70,7 +64,7 @@ print tonights_pick
 if tonights_pick == fav_team:
     message_1 = '''
         The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks at the {place}
-        stadium. The {tonights_pick} will {wingame} this game and go on have a {adjective} season. Your {fav_team} will play
+        stadium. The {tonights_pick} will win this game and go on have a {adjective} season. Your {fav_team} will play
         the Green Bay Packers in this years super bowl and lose by a score of {user_int[0]} - {user_int[1]}. The next
         time they will have an opportunity to play in a Superbowl will be in {user_int[2]}.
     '''
@@ -80,7 +74,7 @@ if tonights_pick == fav_team:
 else:
     message_2 = '''
         The 2014 NFL season kicks off tonight with the Green Bay Packers taking on the Seattle Seahawks at the {place}
-        stadium. The {tonights_pick} will {wingame} this game and go on have a {adjective} season. Your {fav_team} will play
+        stadium. The {tonights_pick} will win this game and go on have a {adjective} season. Your {fav_team} will play
         the {random_team} in this years super bowl and win by a score of {user_int[0]} - {user_int[1]}. The next time
         they will have an opportunity to play in a Superbowl will be in {user_int[2]}.
     '''
