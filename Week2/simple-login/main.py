@@ -94,7 +94,7 @@ class MainHandler(webapp2.RequestHandler): # declares a class
 '''
         print self.request.GET['state']
         if self.request.GET:
-            stores users info from the form
+            # stores users info from the form
             user = self.request.GET['user']
             street = self.request.GET['street']
             city = self.request.GET['city']
