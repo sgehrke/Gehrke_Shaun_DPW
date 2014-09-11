@@ -89,10 +89,14 @@ class MainHandler(webapp2.RequestHandler): # declares a class
         </form>'''
 
         page_close = '''
-
-  </body>
+    </body>
 <html>
 '''
+          
+            self.response.write(page_head + page_form + page_close)
+
+
+
 
 
 
