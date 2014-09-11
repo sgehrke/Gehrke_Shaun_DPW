@@ -92,7 +92,21 @@ class MainHandler(webapp2.RequestHandler): # declares a class
     </body>
 <html>
 '''
-          
+        print self.request.GET['state']
+        if self.request.GET:
+            stores users info from the form
+            user = self.request.GET['user']
+            street = self.request.GET['street']
+            city = self.request.GET['city']
+            state = self.request.GET['state']
+            email = self.request.GET['email']
+            if self.request.GET["gender"] == 'male': # or if gender-male == true /on
+                gender = "you are a man"
+            if self.request.GET["gender"] == 'female':
+                gender = "you are a natural woman"
+            self.response.write(user + ' ' + street + ' ' + city + ' ' + state + ' ' + email + ' ' + gender)# puts
+            # information onto the webpage
+        else:
             self.response.write(page_head + page_form + page_close)
 
 
