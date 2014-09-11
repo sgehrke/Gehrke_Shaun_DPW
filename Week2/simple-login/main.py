@@ -88,7 +88,11 @@ class MainHandler(webapp2.RequestHandler): # declares a class
 
         </form>'''
 
+        page_close = '''
 
+  </body>
+<html>
+'''
 
 
 
