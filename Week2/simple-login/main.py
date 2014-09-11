@@ -12,6 +12,14 @@ import webapp2 # use this library  - importing additional files
 class MainHandler(webapp2.RequestHandler): # declares a class
     # constructor
     def get(self):
+        # starts off my sections of the constructed page
+        page_head = '''<!doctype html>
+<html>
+    <head>
+        <title>Simple Form</title>
+    </head>
+    <body>'''
+
 
 
 
