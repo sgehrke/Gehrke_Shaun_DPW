@@ -3,7 +3,11 @@
 	padding: 0;
 }
 
+html {
+	margin: 0 auto;
+}
 body {
+
 	background-color: yellow;
 }
 
@@ -14,6 +18,12 @@ form {
 	margin: 0 auto;
 	overflow: hidden;
 
+}
+
+section {
+	background: black;
+	color: white;
+	margin: 0 auto;
 }
 
 label {

@@ -94,11 +94,11 @@ class MainHandler(webapp2.RequestHandler): # declares a class
             <input type="submit" value="submit"/>
         </form>
 '''
-		
+
         page_response = '''
 		<section>
 			<h1>Thank you for becoming a member</h1>
-				<p>{user}</p>
+				<p>{self.user}</p>
 				<p>{self.address}</p>
 				<p>{self.city}</p>
 				<p>{self.state}</p>
@@ -130,8 +130,8 @@ class MainHandler(webapp2.RequestHandler): # declares a class
         else:
             self.response.write(page_head + page_form + page_close)
 
-    def print_this(self):
-        page = page.format(**locals())
+    def print_out(self):
+        page = page_response.format(**locals())
         return page
 
 # DO NOT TOUCH - MAKES APP work in browser
