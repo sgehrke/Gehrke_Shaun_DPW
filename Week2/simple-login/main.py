@@ -21,6 +21,8 @@ class MainHandler(webapp2.RequestHandler): # declares a class
         <title>Simple Form</title>
         <link href="css/style.css" rel="stylesheet" type="text/css"
     </head>
+    <header>
+    </header>
     <body>'''
         # page for that will create the name for the key value pairs depending on the users response
         page_form = '''
@@ -96,7 +98,7 @@ class MainHandler(webapp2.RequestHandler): # declares a class
         page_response = '''
 		<section>
 			<h1>Thank you for becoming a member</h1>
-				<p>{self.name}</p>
+				<p>{user}</p>
 				<p>{self.address}</p>
 				<p>{self.city}</p>
 				<p>{self.state}</p>
@@ -122,11 +124,7 @@ class MainHandler(webapp2.RequestHandler): # declares a class
                 gender = "you are a man"
             if self.request.GET["gender"] == 'female':
                 gender = "you are a natural woman"
-            if self.request.GET["agree"]:
-                agree = self.request.GET['agree']
-            else:
-                agree = "you silly Robot, Trix are for kids"
-                self.respose.write(page_head + "You willy Robot Trix are for kids")
+            agree = "Human"
             # puts information onto the webpage
             self.response.write(page_head + page_response + user + ' ' + street + ' ' + city + ' ' + state + ' ' + email + ' ' + gender + ' ' + agree + page_close)
         else:
