@@ -1,0 +1,64 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: yellow;
+}
+
+form {
+	width: 500px;
+	padding: 10px;
+	background: #b1adad;
+	margin: 0 auto;
+	overflow: hidden;
+
+}
+
+label {
+	display: block;
+	float: left;
+	color: white;
+	text-align: right;
+	font-family: Helvetica;
+	font-size: 16px;
+	line-height: 16px;
+	width: 225px;
+	padding-right: 10px;
+
+}
+
+select {
+	border: none;
+	display: block;
+	height: 18px;
+	width: 235px;
+	margin-bottom: 15px;
+	font-family: Helvetica;
+	font-size: 14px;
+}
+input:not([type=submit]):not([type=reset]){
+	border: none;
+	border-radius: 5px;
+	padding: 0 0 0 10px;
+	margin-bottom: 15px;
+	width: 225px;
+	font-size: 14px;
+}
+
+input[type=reset], input[type=submit]{
+	display: block;
+	width: 100px;
+	float: right; 
+	margin-right: 30px;
+	font-family: Helvetica;
+	font-size: 16px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	color: white;
+}
+
+input[type=submit]{
+	background: green;
+}

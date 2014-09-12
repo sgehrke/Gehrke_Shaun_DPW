@@ -12,22 +12,26 @@ import webapp2 # use this library  - importing additional files
 class MainHandler(webapp2.RequestHandler): # declares a class
     # constructor
     def get(self):
+        # self.css = "css/style.css"
+
         # starts off my sections of the constructed page
         page_head = '''<!doctype html>
 <html>
     <head>
         <title>Simple Form</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css"
     </head>
     <body>'''
         # page for that will create the name for the key value pairs depending on the users response
         page_form = '''
+        
         <form method="GET" action="">
-            <label>Name: </label><input type="text" name="user"/><br/>
-            <label>Street Address: </label><input type="text" name="street"/><br/>
-            <label>City: </label><input type="text" name="city"/><br/>
+            <label>Name: </label><input type="text" name="user"/>
+            <label>Street Address: </label><input type="text" name="street"/>
+            <label>City: </label><input type="text" name="city"/>
             <label>State: </label>
                 <select name="state">
-                    <option value="" name=state" selected="selected">Select a State</option>
+                    <option value="what the" selected="selected">Select a State</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -80,19 +84,18 @@ class MainHandler(webapp2.RequestHandler): # declares a class
                     <option value="WI">Wisconsin</option>
                     <option value="WY">Wyoming</option>
                 </select>
-            <label>Email: </label><input type="text" name="email"/><br/>
-            <label>Male </label><input type="radio" value="male" name="gender"/>
-            <label>Female </label><input type="radio" value="female" name="gender"/>
-            <input type="submit" value="submit"/>
+            <label>Email: </label><input type="text" name="email"/>
+            <label>Male: </label><input type="radio" value="male" name="gender"/>
+            <label>Female: </label><input type="radio" value="female" name="gender"/>
             <input type="reset" value="reset"/>
-
+            <input type="submit" value="submit"/>
         </form>'''
 
         page_close = '''
     </body>
 <html>
 '''
-        print self.request.GET['state']
+
         if self.request.GET:
             # stores users info from the form
             user = self.request.GET['user']
@@ -104,8 +107,8 @@ class MainHandler(webapp2.RequestHandler): # declares a class
                 gender = "you are a man"
             if self.request.GET["gender"] == 'female':
                 gender = "you are a natural woman"
-            self.response.write(user + ' ' + street + ' ' + city + ' ' + state + ' ' + email + ' ' + gender)# puts
-            # information onto the webpage
+            # puts information onto the webpage
+            self.response.write(user + ' ' + street + ' ' + city + ' ' + state + ' ' + email + ' ' + gender)
         else:
             self.response.write(page_head + page_form + page_close)
 
