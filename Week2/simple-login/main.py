@@ -31,7 +31,7 @@ class MainHandler(webapp2.RequestHandler): # declares a class
             <label>City: </label><input type="text" name="city"/>
             <label>State: </label>
                 <select name="state">
-                    <option value="what the" selected="selected">Select a State</option>
+                    <option value="" selected="selected">Select a State</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -87,14 +87,29 @@ class MainHandler(webapp2.RequestHandler): # declares a class
             <label>Email: </label><input type="text" name="email"/>
             <label>Male: </label><input type="radio" value="male" name="gender"/>
             <label>Female: </label><input type="radio" value="female" name="gender"/>
+            <label>Check if you are human? </label><input type="checkbox" name="agree" value="agree"/>
             <input type="reset" value="reset"/>
             <input type="submit" value="submit"/>
-        </form>'''
-
+        </form>
+'''
+		
+        page_response = '''
+		<section>
+			<h1>Thank you for becoming a member</h1>
+				<p>{self.name}</p>
+				<p>{self.address}</p>
+				<p>{self.city}</p>
+				<p>{self.state}</p>
+				<p>{self.email}</p>
+				<p>{self.gender}</p>
+				<p>{self.agree}</p>
+		</section>
+'''
         page_close = '''
     </body>
 <html>
 '''
+
 
         if self.request.GET:
             # stores users info from the form
@@ -107,18 +122,19 @@ class MainHandler(webapp2.RequestHandler): # declares a class
                 gender = "you are a man"
             if self.request.GET["gender"] == 'female':
                 gender = "you are a natural woman"
+            if self.request.GET["agree"]:
+                agree = self.request.GET['agree']
+            else:
+                agree = "you silly Robot, Trix are for kids"
+                self.respose.write(page_head + "You willy Robot Trix are for kids")
             # puts information onto the webpage
-            self.response.write(user + ' ' + street + ' ' + city + ' ' + state + ' ' + email + ' ' + gender)
+            self.response.write(page_head + page_response + user + ' ' + street + ' ' + city + ' ' + state + ' ' + email + ' ' + gender + ' ' + agree + page_close)
         else:
             self.response.write(page_head + page_form + page_close)
 
-
-
-
-
-
-
-
+    def print_this(self):
+        page = page.format(**locals())
+        return page
 
 # DO NOT TOUCH - MAKES APP work in browser
 app = webapp2.WSGIApplication([
