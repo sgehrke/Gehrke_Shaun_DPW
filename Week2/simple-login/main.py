@@ -15,6 +15,7 @@ class MainHandler(webapp2.RequestHandler): # declares a class
         # self.css = "css/style.css"
 
         # starts off my sections of the constructed page
+        # codee will be validated through html until I learn the ways of pyhton
         page_head = '''<!doctype html>
 <html>
     <head>
@@ -28,11 +29,11 @@ class MainHandler(webapp2.RequestHandler): # declares a class
         page_form = '''
         
         <form method="GET" action="">
-            <label>Name: </label><input type="text" name="user"/>
-            <label>Street Address: </label><input type="text" name="street"/>
-            <label>City: </label><input type="text" name="city"/>
+            <label>Name: </label><input required="" type="text" name="user"/>
+            <label>Street Address: </label><input required="" type="text" name="street"/>
+            <label>City: </label><input type="text" required="" name="city"/>
             <label>State: </label>
-                <select name="state">
+                <select required="" name="state">
                     <option value="" selected="selected">Select a State</option>
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
@@ -86,27 +87,16 @@ class MainHandler(webapp2.RequestHandler): # declares a class
                     <option value="WI">Wisconsin</option>
                     <option value="WY">Wyoming</option>
                 </select>
-            <label>Email: </label><input type="text" name="email"/>
+            <label>Email: </label><input required="" type="email" name="email"/>
             <label>Male: </label><input type="radio" value="male" name="gender"/>
             <label>Female: </label><input type="radio" value="female" name="gender"/>
-            <label>Check if you are human? </label><input type="checkbox" name="agree" value="agree"/>
+            <label>Check if you are human? </label><input required="" type="checkbox" name="agree" value="agree"/>
             <input type="reset" value="reset"/>
             <input type="submit" value="submit"/>
         </form>
 '''
 
-        page_response = '''
-		<section>
-			<h1>Thank you for becoming a member</h1>
-				<p>{self.user}</p>
-				<p>{self.address}</p>
-				<p>{self.city}</p>
-				<p>{self.state}</p>
-				<p>{self.email}</p>
-				<p>{self.gender}</p>
-				<p>{self.agree}</p>
-		</section>
-'''
+
         page_close = '''
     </body>
 <html>
@@ -120,19 +110,33 @@ class MainHandler(webapp2.RequestHandler): # declares a class
             city = self.request.GET['city']
             state = self.request.GET['state']
             email = self.request.GET['email']
-            if self.request.GET["gender"] == 'male': # or if gender-male == true /on
-                gender = "you are a man"
-            if self.request.GET["gender"] == 'female':
-                gender = "you are a natural woman"
+            gender = self.request.GET["gender"] # or if gender-male == true /on
             agree = "Human"
-            # puts information onto the webpage
-            self.response.write(page_head + page_response + user + ' ' + street + ' ' + city + ' ' + state + ' ' + email + ' ' + gender + ' ' + agree + page_close)
-        else:
-            self.response.write(page_head + page_form + page_close)
+#             page_success = '''
+#         <section>
+#             <h1>Thank you for becoming a member</h1>
+#                 <p>{user}</p>
+#                 <p>{street}</p>
+#                 <p>{city. } {state}</p>
+#
+#                 <p>{email}</p>
+#                 <p>{gender}</p>
+#                 <p>{agree}</p>
+# 	    </section>
+# '''
+#             page_success = page_success.format(**locals()) #
 
-    def print_out(self):
-        page = page_response.format(**locals())
-        return page
+            # puts information onto the webpage
+            self.response.write(page_head + user + ' ' + street + ' ' + city + ' ' + state + ' ' + email + ' ' + gender + ' ' + agree + page_close)
+        else:
+            page_fail = '''
+        <section class="fail">
+            <h1>Please fill out the entire form</h1>
+            <a href=">
+	    </section>
+'''
+            page_fail = page_fail.format(**locals())
+            self.response.write(page_head + page_form + page_fail + page_close)
 
 # DO NOT TOUCH - MAKES APP work in browser
 app = webapp2.WSGIApplication([
