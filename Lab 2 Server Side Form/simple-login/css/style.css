@@ -1,0 +1,138 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	height: 110px;
+	background: url(../images/Sketch_logo.png)no-repeat white;
+	box-shadow: 0px 0px 80px 0px grey;
+	
+}
+
+h1 {
+	font-size: 4em;
+	font-weight: bold;
+	font-family: helvetica;
+}
+h2 {
+	text-align: center;
+}
+body {
+	background-color: #f2f2f2;
+}
+div.form-left {
+	color: white;
+	margin: 50px 0 50px 50px;
+	overflow: hidden;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0px 0px 80px 0px grey;
+	width: 475px;
+	float: left;
+}
+
+form, .form-right {
+	background: white;
+	margin: 50px 50px 50px 0;
+	overflow: hidden;
+	padding: 20px;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	box-shadow: 0px 0px 80px 0px grey;
+	width: 500px;
+	float: right;
+}
+
+.form-center {
+	background: url(../images/sketchbook.jpg)no-repeat;
+	background-position: 0 -200px;
+	margin: 0px auto;
+	overflow: hidden;
+	padding: 20px;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	box-shadow: 0px 0px 80px 0px grey;
+	width: 900px;
+	height: 400px;
+}
+
+
+section.form1 {
+	background:#2e2e2e;
+	overflow: hidden;
+	min-width: 1160px;
+}
+section.female {
+	background: rgba(255,2,129,.5);
+	overflow: hidden;
+	min-width: 1160px;	
+}
+section.male {
+	background: rgba(48,79,255,.5);
+	overflow: hidden;
+	min-width: 1160px;	
+}
+ 
+
+label {
+	display: block;
+	float: left;
+	color: black;
+	text-align: right;
+	font-family: Helvetica;
+	font-size: 16px;
+	line-height: 16px;
+	width: 225px;
+	padding-right: 10px;
+
+}
+
+select {
+	border: solid 1px #ccc;
+	display: block;
+	height: 18px;
+	width: 234px;
+	margin-bottom: 15px;
+	font-family: Helvetica;
+	font-size: 14px;
+}
+input:not([type=submit]):not([type=reset]){
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	padding: 0 0 0 10px;
+	margin-bottom: 15px;
+	width: 224px;
+	font-size: 14px;
+}
+
+input[type=reset], input[type=submit]{
+	display: block;
+	width: 100px;
+	float: right; 
+	margin-right: 30px;
+	font-family: Helvetica;
+	font-size: 16px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	color: white;
+}
+
+input[type=submit]{
+	background: green;
+} 
+
+div.img-contain {
+clear: both;
+	height: 400px;
+	padding-top: 50px;
+	padding-bottom: 100px;
+	background-color: #707070;
+}
+
+footer {
+	clear: both;
+	background: black;
+	height: 100px;
+	width: 100%;
+}
