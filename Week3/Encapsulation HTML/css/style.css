@@ -1,4 +1,5 @@
 * {
+	font-family: sans-serif;
 	margin: 0;
 	padding: 0;
 }
@@ -18,6 +19,7 @@
 }
 
 header#main{
+	box-shadow: 0px 0px 50px gray;
 	width: 100%;
 	min-height: 300px;
 	background: url(../images/ft_course.jpg)no-repeat;
@@ -33,9 +35,21 @@ header#main{
 }
 h1{
 	text-align: center;
+	margin: 0 auto;
 	font-size: 50px;
+	color:red;
+	text-shadow: 0px 0px 40px gray;
 	padding: 28px;
+	background: url(../images/faded-border.jpg)no-repeat;
+	background-position: left bottom;
+	background-size: contain;
+	padding-bottom: 100px;
 	
+}
+
+span {
+	font-weight: bold;
+	letter-spacing: -8px;
 }
 
 .thumbnail {
@@ -54,7 +68,13 @@ h1{
 
 .thumbnail div {
 	width: 255px;
-	height: 150px;
+	height: 155px;
+	overflow: hidden;	
+}
+
+.thumbnail div .selected{
+	width: 100%;
+	height: 155px;
 	overflow: hidden;	
 }
 
@@ -70,20 +90,23 @@ h1{
 	opacity: 1.0;
 	filter: none;
 	-webkit-filter: grayscale(0%);
+	border: 1px solid #07c200;
 }
 
-.thumbnails a:hover {
+.thumbnails a {
 	color: black;
 }
 
 .thumbnail p {
-	font-family: helvetica;
+	font-family: sans-serif;
 	text-align: left;
 	word-wrap: break-word;
 	height: 5px;
+	color: black;
 }
 
 footer {
+	margin-top: 70px;
 	position: relative;
 	left:0;
 	bottom: 0;
@@ -91,3 +114,4 @@ footer {
 	background-color: #7f7878;
 	height: 100px;
 }
+
