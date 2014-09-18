@@ -1,3 +1,47 @@
-body {
-	background-color: green;
+.cf:before,
+.cf:after {
+    content: " "; 
+    display: table; 
+}
+
+.cf:after {
+    clear: both;
+}
+
+.cf {
+    *zoom: 1;
+}
+
+.thumbnails .thumbnail {
+	float: left;
+	width: 18%;
+	margin: 0 1% 40px;
+	border: 1px solid red;
+	padding: 0;
+	border-radius: 0;
+	position: relative;
+	background: 0;
+}
+
+.thumbnail {
+	padding: 4px;
+	line-height: 1.428571429;
+	background-color: #f1f1f1;
+	border: 1px solid #ddd;
+	border-radius: 0;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+	display: inline-block;
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.thumbnails .thumbnail .thumbnail-preview {
+	padding: 10px 10px 27px 10px;
+	background: #fff;
+	position: relative;
+	overflow: hidden;
+	-webkit-transition: all .2s linear;
+	transition: all .2s linear;
 }
