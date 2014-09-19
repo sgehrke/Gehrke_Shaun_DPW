@@ -92,7 +92,9 @@ span {
 	-webkit-filter: grayscale(0%);
 	border: 1px solid #07c200;
 }
-
+a {
+	text-decoration: none;
+}
 .thumbnails a {
 	color: black;
 }

@@ -81,12 +81,12 @@ class MainHandler(webapp2.RequestHandler):
         straits.calc_rating()
         print straits.bogey_rating
 
-        courses = ["Pebble Beach"]
-        print courses
 
-        # if self.request.GET:
-        #     name = self.request.GET['name']
-        #     print name + "line 83"
+        if self.request.GET:
+            name = self.request.GET['name']
+            page_result = page_result.format(**locals())
+            print  p.page_result() + "line 83"
+
 
 
 

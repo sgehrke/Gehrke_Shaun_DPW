@@ -40,7 +40,7 @@ class Page(object):
 					<div><p>The Black Course is a difficult and challenging course that should be played only by low-handicap golfers. The course is for walkers only and its slope rating is one of the highest in the northeast.</p></div>
 				</li></a>
 
-				<li class="thumbnail">
+				<a href="/?name=TPC+Sawgrass"><li class="thumbnail">
 					<header>
 						<h2>TPC Sawgrass</h2>
 					</header>
@@ -48,8 +48,9 @@ class Page(object):
 						<img src="images/course3_thumbnail.jpeg" alt="course3_thumbnail" width="259" height="194">
 					</figure>
 					<div><p>Home of THE PLAYERS Championship, birthplace of the TPC Network, and backdrop to the PGA TOUR headquarters, TPC Sawgrass is perhaps the world's most famous golf course</p></div>
-				</li>
-				<li class="thumbnail">
+				</li></a>
+
+				<a href="/?name=Shinnecock+Hills"><li class="thumbnail">
 					<header>
 						<h2>Shinnecock Hills</h2>
 					</header>
@@ -57,8 +58,9 @@ class Page(object):
 						<img src="images/course4_thumbnail.jpeg" alt="course4_thumbnail" width="259" height="194">
 					</figure>
 					<div><p>Shinnecock Hills Golf Club, founded in 1891, is one of the historic golfing institutions in the United States. It is the oldest incorporated golf club and was one of the five founding member clubs of the USGA.</p></div>
-				</li>
-				<li class="thumbnail">
+				</li></a>
+
+				<a href="/?name=Winged+Foot"><li class="thumbnail">
 					<header>
 						<h2>Winged Foot</h2>
 					</header>
@@ -66,8 +68,9 @@ class Page(object):
 						<img src="images/course5_thumbnail.jpeg" alt="course5_thumbnail" width="259" height="194">
 					</figure>
 					<div><p>Winged Foot is nothing less than the finest golf club in metropolitan New York. Given the wealth of great golf in the area, that lofty position also means Winged Foot is surely on the short list of contenders for the best golf club in the world.</p></div>
-				</li>
-				<li class="thumbnail">
+				</li></a>
+
+				<a href="/?name=Whistling+Straits"><li class="thumbnail">
 					<header>
 						<h2>Whistling Straits</h2>
 					</header>
@@ -75,7 +78,7 @@ class Page(object):
 						<img src="images/course6_thumbnail.jpeg" alt="course6_thumbnail" width="259" height="194">
 					</figure>
 					<div><p>Arguably the greatest championship course in the United States, it has hosted the 2004 & 2010 PGA Championships - and it is the future site of the 2015 PGA Championship and 2020 Ryder Cup.</p></div>
-				</li>
+				</li></a>
 			</ul>
 		</div>
 	</section>
@@ -95,7 +98,7 @@ class Page(object):
 			<ul class="thumbnails cf">
 				<a href=""><li class="thumbnail selected">
 					<header>
-						<h2></h2>
+						<h2>{name}</h2>
 					</header>
 					<figure>
 						<img src="images/course1_thumbnail.jpeg" alt="course1_thumbnail" width="259" height="194">
@@ -108,7 +111,7 @@ class Page(object):
 
         '''
     def page_result(self):
-        page_result = self.head + self.result + self.body + self.footer
+        page_result = self.result
         page_result = page_result.format(**locals())
         return page_result
 
