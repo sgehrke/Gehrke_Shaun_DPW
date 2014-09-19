@@ -9,69 +9,41 @@
 	
 	<header id="main"></header>
 	
-	<section>
+	<section >
 		<div class="container">
-		<h1>Top <span>US</span><span style="color: blue;">GA</span></span> Course Ratings</h1>
+		<h1>An average Bogey Golfers Rating</h1>
 			<ul class="thumbnails cf">
-				<a href=""><li class="thumbnail">
+				<a href=""><li id="selected" class="thumbnail">
 					<header>
-						<h2>Pebble Beach</h2>
+						<h2>{self.get_name}</h2>
 					</header>
 					<figure>
-						<img src="images/course1_thumbnail.jpeg" alt="course1_thumbnail" width="259" height="194">
+						<img src="images/{self.get_name}" alt="{self.get_name}" width="259" height="194">
 					</figure>
-					
-					<div><p>Pebble Beach Resorts is a legendary place. Combining a dramatic coastline with a mystical forest. Perhaps nowhere else on the planet does this combination come together quite like Pebble Beach.</p></div>
-				
+
+					<div>
+					    <ul>
+					        <li>
+					            <h3>Yardage</h3>
+					            <p>{self.get_yardage}</p>
+					        </li>
+					        <li>
+					        	<h3>Course Rating</h3>
+					        	<p>{self.get_course_rating}</p>
+					        </li>
+					        <li>
+					        	<h3>Slope</h3>
+					        	<p>{self.get_slope}</p>
+					        </li>
+					        <li>
+					        	<h3>Bogey Rating</h3>
+								<p>{self.get_bogey_rating}</p>
+					        </li>
+                        </ul>
+					</div>
+
 				</li></a>
-				<li class="thumbnail">
-					<header>
-						<h2>Bethpage (Black)</h2>
-					</header>
-					<figure>
-						<img src="images/course2_thumbnail.jpeg" alt="course2_thumbnail" width="259" height="194">
-					</figure>
-					<div><p>The Black Course is a difficult and challenging course that should be played only by low-handicap golfers. The course is for walkers only and its slope rating is one of the highest in the northeast.</p></div>
-				</li>
-				<li class="thumbnail">
-					<header>
-						<h2>TPC Sawgrass</h2>
-					</header>
-					<figure>
-						<img src="images/course3_thumbnail.jpeg" alt="course3_thumbnail" width="259" height="194">
-					</figure>
-					<div><p>Home of THE PLAYERS Championship, birthplace of the TPC (Tournament Players Club) Network, and backdrop to the PGA TOUR headquarters, TPC Sawgrass is perhaps the world’s most famous golf course</p></div>
-				</li>
-				<li class="thumbnail">
-					<header>
-						<h2>Shinnecock Hills</h2>
-					</header>
-					<figure>
-						<img src="images/course4_thumbnail.jpeg" alt="course4_thumbnail" width="259" height="194">
-					</figure>
-					<div><p>Shinnecock Hills Golf Club, founded in 1891, is one of the historic golfing institutions in the United States. It is the oldest incorporated golf club and was one of the five founding member clubs of the USGA.</p></div>
-				</li>
-				<li class="thumbnail">
-					<header>
-						<h2>Winged Foot</h2>
-					</header>
-					<figure>
-						<img src="images/course5_thumbnail.jpeg" alt="course5_thumbnail" width="259" height="194">
-					</figure>
-					<div><p>Winged Foot is nothing less than the finest golf club in metropolitan New York. Given the wealth of great golf in the area, that lofty position also means Winged Foot is surely on the short list of contenders for the best golf club in the world.</p></div>
-				</li>
-				<li class="thumbnail">
-					<header>
-						<h2>Whistling Straigts</h2>
-					</header>
-					<figure>
-						<img src="images/course6_thumbnail.jpeg" alt="course6_thumbnail" width="259" height="194">
-					</figure>
-					<div><p>Arguably the greatest championship course in the United States, it has hosted the 2004 & 2010 PGA Championships - and it is the future site of the 2015 PGA Championship and 2020 Ryder Cup.</p></div>
-				</li>
-			</ul>
-		</div>	
-	</section>
+				</section>
 	<footer></footer>
 </body>
 </html>

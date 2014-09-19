@@ -2,6 +2,15 @@ class Page(object):
     def __init__(self):
         self.title = ''
         self.css = "css/style.css"
+        self.get_name = '' # so now get_name will be whatever is clicked
+        # self.get_yardage = ''
+        # self.get_course_rating = ''
+        # self.get_par = ''
+        # self.get_slope = ''
+        # self.get_bogey_rating = ''
+        print "line 96" + self.get_name
+
+
         self.head = '''<!doctype html>
 <html lang="en">
 <head>
@@ -18,7 +27,7 @@ class Page(object):
 		<div class="container">
 		<h1>Top <span>US</span><span style="color: blue;">GA</span></span> Course Ratings</h1>
 			<ul class="thumbnails cf">
-				<a href="/?name=Pebble+Beach"><li class="thumbnail">
+				<a href="/?name=THIS"><li class="thumbnail">
 					<header>
 						<h2>Pebble Beach</h2>
 					</header>
@@ -91,9 +100,10 @@ class Page(object):
 </html>
 
         '''
-        self.get_name = '' # so now get_name will be whatever is clicked
+        # in this part the attributes are being passed from the GET request on main.py
 
-        self.result = '''<section>
+
+        self.result = '''<section class="selected">
 		<div class="container">
 		<h1>An average Bogey Golfers Rating</h1>
 			<ul class="thumbnails cf">
@@ -102,10 +112,20 @@ class Page(object):
 						<h2>{self.get_name}</h2>
 					</header>
 					<figure>
-						<img src="images/course1_thumbnail.jpeg" alt="course1_thumbnail" width="259" height="194">
+						<img src="images/{self.get_name}" alt="{self.get_name}" width="259" height="194">
 					</figure>
 
-					<div><p>Pebble Beach Resorts is a legendary place. Combining a dramatic coastline with a mystical forest. Perhaps nowhere else on the planet does this combination come together quite like Pebble Beach.</p></div>
+					<div>
+					    <ul>
+					        <li>
+					            <h3>Yardage</h3>
+					            <
+					        </li>
+					        <li>Course Rating</li>
+					        <li>Slope</li>
+					        <li>Bogey Rating</li>
+                        </ul>
+					</div>
 
 				</li></a>
 				</section>
