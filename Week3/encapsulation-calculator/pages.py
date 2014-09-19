@@ -18,7 +18,7 @@ class Page(object):
 		<div class="container">
 		<h1>Top <span>US</span><span style="color: blue;">GA</span></span> Course Ratings</h1>
 			<ul class="thumbnails cf">
-				<a href=""><li class="thumbnail">
+				<a href="/?name=Pebble+Beach"><li class="thumbnail">
 					<header>
 						<h2>Pebble Beach</h2>
 					</header>
@@ -86,28 +86,6 @@ class Page(object):
 </html>
 
         '''
-
-
-
-    def result(self):
-        self.result = '''<section>
-		<div class="container">
-		<h1>Top <span>US</span><span style="color: blue;">GA</span></span> Course Ratings</h1>
-			<ul class="thumbnails cf">
-				<a href=""><li class="thumbnail">
-					<header>
-						<h2>Pebble Beach</h2>
-					</header>
-					<figure>
-						<img src="images/course1_thumbnail.jpeg" alt="course1_thumbnail" width="259" height="194">
-					</figure>
-
-					<div><p>Pebble Beach Resorts is a legendary place. Combining a dramatic coastline with a mystical forest. Perhaps nowhere else on the planet does this combination come together quite like Pebble Beach.</p></div>
-
-				</li></a>
-
-        '''
-
 
 
 
