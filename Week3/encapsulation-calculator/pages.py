@@ -55,7 +55,7 @@ class Page(object):
 					<div><p>Home of THE PLAYERS Championship, birthplace of the TPC Network, and backdrop to the PGA TOUR headquarters, TPC Sawgrass is perhaps the world's most famous golf course</p></div>
 				</li></a>
 
-				<a href="/?name=Shinnecock"><li class="thumbnail">
+				<a href="/?name=shinnecock"><li class="thumbnail">
 					<header>
 						<h2>Shinnecock Hills</h2>
 					</header>
@@ -65,7 +65,7 @@ class Page(object):
 					<div><p>Shinnecock Hills Golf Club, founded in 1891, is one of the historic golfing institutions in the United States. It is the oldest incorporated golf club and was one of the five founding member clubs of the USGA.</p></div>
 				</li></a>
 
-				<a href="/?name=Winged"><li class="thumbnail">
+				<a href="/?name=winged"><li class="thumbnail">
 					<header>
 						<h2>Winged Foot</h2>
 					</header>
@@ -75,7 +75,7 @@ class Page(object):
 					<div><p>Winged Foot is nothing less than the finest golf club in metropolitan New York. Given the wealth of great golf in the area, it is surely on the short list of contenders for the best golf club in the world.</p></div>
 				</li></a>
 
-				<a href="/?name=Whistling"><li class="thumbnail">
+				<a href="/?name=whistling"><li class="thumbnail">
 					<header>
 						<h2>Whistling Straits</h2>
 					</header>
@@ -109,7 +109,7 @@ class Page(object):
         <li id="selected">
 
             <figure>
-                <img src="/images/{self.course.name}.jpg" alt="{self.course}" width="640" height="427">
+                <img src="/images/{self.get_name}.jpg" alt="{self.get_name}" width="640" height="427">
             </figure>
 
             <div>

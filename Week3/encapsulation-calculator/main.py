@@ -83,12 +83,16 @@ class MainHandler(webapp2.RequestHandler):
             p.get_name = self.request.GET['name']
             if self.request.GET['name'] == 'pebble':
                 p.course = pebble
-                # p.get_yardage = self.request.GET['yardage']
-                # p.get_course_rating = self.request.GET['course_rating']
-                # p.get_par = self.request.GET['par']
-                # p.get_slope = self.request.GET['slope']
-            # p.get_bogey_rating = p.calc_rating()
-
+            elif self.request.GET['name'] == 'bethpage':
+                p.course = bethpage
+            elif self.request.GET['name'] == 'TPC':
+                p.course = sawgrass
+            elif self.request.GET['name'] == 'shinnecock':
+                p.course = shinnecock
+            elif self.request.GET['name'] == 'winged':
+                p.course = winged
+            elif self.request.GET['name'] == 'whistling':
+                p.course = straits
             self.response.write(p.page_result())
         else:
             self.response.write(p.print_page())
