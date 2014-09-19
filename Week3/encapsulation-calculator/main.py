@@ -81,12 +81,14 @@ class MainHandler(webapp2.RequestHandler):
 
         if self.request.GET:
             p.get_name = self.request.GET['name']
-            # p.get_yardage = self.request.GET['yardage']
-            # p.get_course_rating = self.request.GET['course_rating']
-            # p.get_par = self.request.GET['par']
-            # p.get_slope = self.request.GET['slope']
+            if self.request.GET['name'] == 'pebble':
+                p.course = pebble
+                # p.get_yardage = self.request.GET['yardage']
+                # p.get_course_rating = self.request.GET['course_rating']
+                # p.get_par = self.request.GET['par']
+                # p.get_slope = self.request.GET['slope']
             # p.get_bogey_rating = p.calc_rating()
-            print 'line 89'
+
             self.response.write(p.page_result())
         else:
             self.response.write(p.print_page())

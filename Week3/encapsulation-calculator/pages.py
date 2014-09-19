@@ -2,14 +2,9 @@ class Page(object):
     def __init__(self):
         self.title = ''
         self.css = "css/style.css"
-        self.get_name = '' # so now get_name will be whatever is clicked
-        # self.get_yardage = ''
-        # self.get_course_rating = ''
-        # self.get_par = ''
-        # self.get_slope = ''
-        # self.get_bogey_rating = ''
-        print "line 96" + self.get_name
-
+        self.get_name = ''
+        self.course = Course()
+        print self.course
 
         self.head = '''<!doctype html>
 <html lang="en">
@@ -19,15 +14,16 @@ class Page(object):
 	<link href="{self.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <a href="/"</a>
+    <a href="/">
 	<header id="main"></header>
+	</a>
         '''
 
         self.body = '''	<section>
 		<div class="container">
 		<h1>Top <span>US</span><span style="color: blue;">GA</span></span> Course Ratings</h1>
 			<ul class="thumbnails cf">
-				<a href="/?name=THIS"><li class="thumbnail">
+				<a href="/?name=pebble"><li class="thumbnail">
 					<header>
 						<h2>Pebble Beach</h2>
 					</header>
@@ -39,7 +35,7 @@ class Page(object):
 
 				</li></a>
 
-				<a href="/?name=Bethpage+Black"><li class="thumbnail">
+				<a href="/?name=bethpage"><li class="thumbnail">
 					<header>
 						<h2>Bethpage (Black)</h2>
 					</header>
@@ -49,7 +45,7 @@ class Page(object):
 					<div><p>The Black Course is a difficult and challenging course that should be played only by low-handicap golfers. The course is for walkers only and its slope rating is one of the highest in the northeast.</p></div>
 				</li></a>
 
-				<a href="/?name=TPC+Sawgrass"><li class="thumbnail">
+				<a href="/?name=TPC"><li class="thumbnail">
 					<header>
 						<h2>TPC Sawgrass</h2>
 					</header>
@@ -59,7 +55,7 @@ class Page(object):
 					<div><p>Home of THE PLAYERS Championship, birthplace of the TPC Network, and backdrop to the PGA TOUR headquarters, TPC Sawgrass is perhaps the world's most famous golf course</p></div>
 				</li></a>
 
-				<a href="/?name=Shinnecock+Hills"><li class="thumbnail">
+				<a href="/?name=Shinnecock"><li class="thumbnail">
 					<header>
 						<h2>Shinnecock Hills</h2>
 					</header>
@@ -69,17 +65,17 @@ class Page(object):
 					<div><p>Shinnecock Hills Golf Club, founded in 1891, is one of the historic golfing institutions in the United States. It is the oldest incorporated golf club and was one of the five founding member clubs of the USGA.</p></div>
 				</li></a>
 
-				<a href="/?name=Winged+Foot"><li class="thumbnail">
+				<a href="/?name=Winged"><li class="thumbnail">
 					<header>
 						<h2>Winged Foot</h2>
 					</header>
 					<figure>
 						<img src="images/course5_thumbnail.jpeg" alt="course5_thumbnail" width="259" height="194">
 					</figure>
-					<div><p>Winged Foot is nothing less than the finest golf club in metropolitan New York. Given the wealth of great golf in the area, that lofty position also means Winged Foot is surely on the short list of contenders for the best golf club in the world.</p></div>
+					<div><p>Winged Foot is nothing less than the finest golf club in metropolitan New York. Given the wealth of great golf in the area, it is surely on the short list of contenders for the best golf club in the world.</p></div>
 				</li></a>
 
-				<a href="/?name=Whistling+Straits"><li class="thumbnail">
+				<a href="/?name=Whistling"><li class="thumbnail">
 					<header>
 						<h2>Whistling Straits</h2>
 					</header>
@@ -103,32 +99,43 @@ class Page(object):
         # in this part the attributes are being passed from the GET request on main.py
 
 
-        self.result = '''<section class="selected">
-		<div class="container">
-		<h1>An average Bogey Golfers Rating</h1>
-			<ul class="thumbnails cf">
-				<a href=""><li class="thumbnail selected">
-					<header>
-						<h2>{self.get_name}</h2>
-					</header>
-					<figure>
-						<img src="images/{self.get_name}" alt="{self.get_name}" width="259" height="194">
-					</figure>
+        self.result = '''
+<section >
+<div class="container cf">
+    <header>
+        <h1>{self.course.name}</h1>
+    </header>
+    <ul class="thumbnails">
+        <li id="selected">
 
-					<div>
-					    <ul>
-					        <li>
-					            <h3>Yardage</h3>
-					            <
-					        </li>
-					        <li>Course Rating</li>
-					        <li>Slope</li>
-					        <li>Bogey Rating</li>
-                        </ul>
-					</div>
+            <figure>
+                <img src="/images/{self.course.name}.jpg" alt="{self.course}" width="640" height="427">
+            </figure>
 
-				</li></a>
-				</section>
+            <div>
+                <ul>
+                    <li>
+                        <h2>Yardage</h2>
+                        <p>{self.course.yardage}</p>
+                    </li>
+                    <li>
+                        <h2>Course Rating</h2>
+                        <p>{self.course.course_rating}</p>
+                    </li>
+                    <li>
+                        <h2>Slope</h2>
+                        <p>{self.course.slope}</p>
+                    </li>
+                    <li>
+                        <h2>Bogey Rating</h2>
+                        <p>{self.course.bogey_rating}</p>
+                    </li>
+                </ul>
+            </div>
+
+        </li>
+    </div>
+</section>
 
         '''
 
