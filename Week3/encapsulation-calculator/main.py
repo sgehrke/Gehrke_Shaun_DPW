@@ -13,11 +13,11 @@ class MainHandler(webapp2.RequestHandler):
         pebble = Course()
         pebble.name = "Pebble Beach"
         pebble.yardage = 6828
-        pebble.course_rating = 75.5
+        pebble.__course_rating = 75.5
         pebble.par = 72
-        pebble.slope = 145
-        pebble.bogey_rating = ''
-print cou
+        pebble.__slope = 145
+        pebble.__bogey_rating = ''
+        print pebble.bogey_rating
 
         # Object for Bethpage Black
         bethpage = Course()
@@ -26,7 +26,7 @@ print cou
         bethpage.course_rating = 78.1
         bethpage.par = 72
         bethpage.slope = 152
-        bethpage.bogey_rating = ''
+        bethpage.__bogey_rating = ''
 
 
         # Object for TPC Sawgrass
@@ -36,7 +36,7 @@ print cou
         sawgrass.course_rating = 76.8
         sawgrass.par = 72
         sawgrass.slope = 155
-        sawgrass.bogey_rating = ''
+        sawgrass.__bogey_rating = ''
 
 
         # Object for Shinecock Hills
@@ -46,7 +46,7 @@ print cou
         shinnecock.course_rating = 74.7
         shinnecock.par = 72
         shinnecock.slope = 140
-        shinnecock.bogey_rating = ''
+        shinnecock.__bogey_rating = ''
 
 
         # Object for Winged Foot
@@ -56,7 +56,7 @@ print cou
         winged.course_rating = 76.1
         winged.par = 72
         winged.slope = 145
-        winged.bogey_rating = ''
+        winged.__bogey_rating = ''
 
 
         # Object for Whistling Straits
@@ -66,7 +66,7 @@ print cou
         straits.course_rating = 77.2
         straits.par = 72
         straits.slope = 152
-        straits.bogey_rating = ''
+        straits.__bogey_rating = ''
 
 
 
@@ -89,14 +89,23 @@ print cou
 class Course(object):
     def __init__(self):
         self.name = ''
-        self.yardage 0
+        self.yardage = 0
         self.course_rating = 0
         self.par = ''
         self.slope = 0
-        self.bogey_rating = 0 # this will be the number that a bogey golf should expect to score
+        self.__bogey_rating = 0 # this will be the number that a bogey golf should expect to score
 
+    @property
+    def bogey_rating(self):
+        return self.__bogey_rating
 
+    @bogey_rating.setter
+    def bogey_rating(self, new_bogey_rating):
+        self.__bogey_rating =  new_bogey_rating
 
+    def calc_rating(self):
+        self.__bogey_rating = self.slope / 5.381 + self.course_rating
+        return self.__bogey_rating
 
 
 app = webapp2.WSGIApplication([
