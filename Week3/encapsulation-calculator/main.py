@@ -12,10 +12,6 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
 
         p = Page()
-        if self.request.GET:
-            self.response.write(p.page_result())
-        else:
-            self.response.write(p.print_page())
 
         # Object for Pebble Beach
         pebble = Course()
@@ -82,12 +78,13 @@ class MainHandler(webapp2.RequestHandler):
         print straits.bogey_rating
 
 
+
+
         if self.request.GET:
-            name = self.request.GET['name']
-            page_result = page_result.format(**locals())
-            print  p.page_result() + "line 83"
-
-
+            p.get_name = self.request.GET['name']
+            self.response.write(p.page_result())
+        else:
+            self.response.write(p.print_page())
 
 
 app = webapp2.WSGIApplication([

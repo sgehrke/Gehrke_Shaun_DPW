@@ -91,6 +91,7 @@ class Page(object):
 </html>
 
         '''
+        self.get_name = '' # so now get_name will be whatever is clicked
 
         self.result = '''<section>
 		<div class="container">
@@ -98,7 +99,7 @@ class Page(object):
 			<ul class="thumbnails cf">
 				<a href=""><li class="thumbnail selected">
 					<header>
-						<h2>{name}</h2>
+						<h2>{self.get_name}</h2>
 					</header>
 					<figure>
 						<img src="images/course1_thumbnail.jpeg" alt="course1_thumbnail" width="259" height="194">
@@ -110,8 +111,9 @@ class Page(object):
 				</section>
 
         '''
+
     def page_result(self):
-        page_result = self.result
+        page_result = self.head + self.result + self.footer
         page_result = page_result.format(**locals())
         return page_result
 
