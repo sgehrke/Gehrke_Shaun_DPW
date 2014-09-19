@@ -12,7 +12,10 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
 
         p = Page()
-        self.response.write(p.print_page())
+        if self.request.GET:
+            self.response.write(p.page_result())
+        else:
+            self.response.write(p.print_page())
 
         # Object for Pebble Beach
         pebble = Course()
@@ -76,35 +79,11 @@ class MainHandler(webapp2.RequestHandler):
         straits.par = 72
         straits.slope = 152
         straits.calc_rating()
-        print "line 79" +str(straits.bogey_rating)
+        print straits.bogey_rating
 
-
-
-        if self.request.GET:
-            name = self.request.GET['name']
-            print name
-
-
-        self.result = '''<section>
-		<div class="container">
-		<h1>Top <span>US</span><span style="color: blue;">GA</span></span> Course Ratings</h1>
-			<ul class="thumbnails cf">
-				<a href=""><li class="thumbnail">
-					<header>
-						<h2>{self.name}</h2>
-					</header>
-					<figure>
-						<img src="images/course1_thumbnail.jpeg" alt="course1_thumbnail" width="259" height="194">
-					</figure>
-
-					<div><p>Pebble Beach Resorts is a legendary place. Combining a dramatic coastline with a mystical forest. Perhaps nowhere else on the planet does this combination come together quite like Pebble Beach.</p></div>
-
-				</li></a>
-
-        '''
-
-    def print_result(self):
-        
+        # if self.request.GET:
+        #     name = self.request.GET['name']
+        #     print name + "line 83"
 
 
 

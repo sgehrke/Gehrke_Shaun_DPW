@@ -10,7 +10,7 @@ class Page(object):
 	<link href="{self.css}" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
+    <a href="/"</a>
 	<header id="main"></header>
         '''
 
@@ -29,7 +29,8 @@ class Page(object):
 					<div><p>Pebble Beach Resorts is a legendary place. Combining a dramatic coastline with a mystical forest. Perhaps nowhere else on the planet does this combination come together quite like Pebble Beach.</p></div>
 
 				</li></a>
-				<li class="thumbnail">
+
+				<a href="/?name=Bethpage+Black"><li class="thumbnail">
 					<header>
 						<h2>Bethpage (Black)</h2>
 					</header>
@@ -37,7 +38,8 @@ class Page(object):
 						<img src="images/course2_thumbnail.jpeg" alt="course2_thumbnail" width="259" height="194">
 					</figure>
 					<div><p>The Black Course is a difficult and challenging course that should be played only by low-handicap golfers. The course is for walkers only and its slope rating is one of the highest in the northeast.</p></div>
-				</li>
+				</li></a>
+
 				<li class="thumbnail">
 					<header>
 						<h2>TPC Sawgrass</h2>
@@ -87,14 +89,33 @@ class Page(object):
 
         '''
 
+        self.result = '''<section>
+		<div class="container">
+		<h1>An average Bogey Golfers Rating</h1>
+			<ul class="thumbnails cf">
+				<a href=""><li class="thumbnail selected">
+					<header>
+						<h2></h2>
+					</header>
+					<figure>
+						<img src="images/course1_thumbnail.jpeg" alt="course1_thumbnail" width="259" height="194">
+					</figure>
 
+					<div><p>Pebble Beach Resorts is a legendary place. Combining a dramatic coastline with a mystical forest. Perhaps nowhere else on the planet does this combination come together quite like Pebble Beach.</p></div>
+
+				</li></a>
+				</section>
+
+        '''
+    def page_result(self):
+        page_result = self.head + self.result + self.body + self.footer
+        page_result = page_result.format(**locals())
+        return page_result
 
     def print_page(self):
         page = self.head + self.body + self.footer
         page = page.format(**locals())
         return page
-
-
 
 
 class Course(object):
