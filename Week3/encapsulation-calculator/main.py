@@ -8,15 +8,16 @@ import webapp2
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        
 
         # Object for Pebble Beach
         pebble = Course()
         pebble.name = "Pebble Beach"
         pebble.yardage = 6828
-        pebble.__course_rating = 75.5
+        pebble.course_rating = 75.5
         pebble.par = 72
-        pebble.__slope = 145
-        pebble.__bogey_rating = ''
+        pebble.slope = 145
+        pebble.calc_rating()
         print pebble.bogey_rating
 
         # Object for Bethpage Black
@@ -26,7 +27,8 @@ class MainHandler(webapp2.RequestHandler):
         bethpage.course_rating = 78.1
         bethpage.par = 72
         bethpage.slope = 152
-        bethpage.__bogey_rating = ''
+        bethpage.calc_rating()
+        print bethpage.bogey_rating
 
 
         # Object for TPC Sawgrass
@@ -36,7 +38,8 @@ class MainHandler(webapp2.RequestHandler):
         sawgrass.course_rating = 76.8
         sawgrass.par = 72
         sawgrass.slope = 155
-        sawgrass.__bogey_rating = ''
+        sawgrass.calc_rating()
+        print sawgrass.bogey_rating
 
 
         # Object for Shinecock Hills
@@ -46,7 +49,8 @@ class MainHandler(webapp2.RequestHandler):
         shinnecock.course_rating = 74.7
         shinnecock.par = 72
         shinnecock.slope = 140
-        shinnecock.__bogey_rating = ''
+        shinnecock.calc_rating()
+        print shinnecock.bogey_rating
 
 
         # Object for Winged Foot
@@ -56,7 +60,8 @@ class MainHandler(webapp2.RequestHandler):
         winged.course_rating = 76.1
         winged.par = 72
         winged.slope = 145
-        winged.__bogey_rating = ''
+        winged.calc_rating()
+        print winged.bogey_rating
 
 
         # Object for Whistling Straits
@@ -66,7 +71,8 @@ class MainHandler(webapp2.RequestHandler):
         straits.course_rating = 77.2
         straits.par = 72
         straits.slope = 152
-        straits.__bogey_rating = ''
+        straits.calc_rating()
+        print straits.bogey_rating
 
 
 
@@ -102,10 +108,12 @@ class Course(object):
     @bogey_rating.setter
     def bogey_rating(self, new_bogey_rating):
         self.__bogey_rating =  new_bogey_rating
+        self.calc_rating()
 
     def calc_rating(self):
-        self.__bogey_rating = self.slope / 5.381 + self.course_rating
-        return self.__bogey_rating
+        self.__bogey_rating = round(self.slope / 5.381 + self.course_rating, 2)
+
+
 
 
 app = webapp2.WSGIApplication([
