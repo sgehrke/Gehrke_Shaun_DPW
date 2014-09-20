@@ -4,20 +4,20 @@ Lab 3 Encapsulated Calculator
 DPW 1409
 
 '''
-import webapp2
-from pages import Page
+import webapp2 # this is the main app import from google
+from pages import Page # I created a seperate page - with this i can access it
 from pages import Course
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
 
-        p = Page()
-        c = Course()
+        p = Page() # p instantiates the class Page
+        c = Course() # c does the same for the class Course
         # Object for Pebble Beach
         pebble = Course()
         pebble.name = "Pebble Beach"
         pebble.yardage = 6828
-        pebble.course_rating = 75.5
+        pebble.course_rating = 75.5 # this attribute is set to private in the contructor but with the getter-setter I am able to set the variable
         pebble.par = 72
         pebble.slope = 145
         pebble.calc_rating()
@@ -47,7 +47,7 @@ class MainHandler(webapp2.RequestHandler):
 
         # Object for Shinecock Hills
         shinnecock = Course()
-        shinnecock.name = "Shinecock Hills"
+        shinnecock.name = "Shinnecock Hills"
         shinnecock.yardage = 6781
         shinnecock.course_rating = 74.7
         shinnecock.par = 72
@@ -78,24 +78,34 @@ class MainHandler(webapp2.RequestHandler):
         print straits.bogey_rating
 
 
-
+# This is a really neat way to dynamically acess and use the objects
         if self.request.GET:
-            p.get_name = self.request.GET['name']
-            if self.request.GET['name'] == 'pebble':
-                p.course = pebble
-            elif self.request.GET['name'] == 'bethpage':
-                p.course = bethpage
-            elif self.request.GET['name'] == 'TPC':
-                p.course = sawgrass
-            elif self.request.GET['name'] == 'shinnecock':
-                p.course = shinnecock
-            elif self.request.GET['name'] == 'winged':
-                p.course = winged
-            elif self.request.GET['name'] == 'whistling':
-                p.course = straits
+            p.get_name = self.request.GET['name'] # uses the to dynamically fill the image tag
+            course = self.request.GET['name'] # gets the click info
+            c = locals()[course] # refers c to the object course
+            p.course = c # lets pages.py have access to c
+#both of the next lines print depending on conditional result
             self.response.write(p.page_result())
         else:
             self.response.write(p.print_page())
+'''
+
+So here I was going to have the conditionals do the work but I wanted it to be more dynamic- which is indicated by the above format with locals()
+            # p.get_name = self.request.GET['name']
+            # if self.request.GET['name'] == 'pebble':
+            #     p.course = pebble
+            # elif self.request.GET['name'] == 'bethpage':
+            #     p.course = bethpage
+            # elif self.request.GET['name'] == 'TPC':
+            #     p.course = sawgrass
+            # elif self.request.GET['name'] == 'shinnecock':
+            #     p.course = shinnecock
+            # elif self.request.GET['name'] == 'winged':
+            #     p.course = winged
+            # elif self.request.GET['name'] == 'whistling':
+            #     p.course = straits
+'''
+
 
 
 app = webapp2.WSGIApplication([

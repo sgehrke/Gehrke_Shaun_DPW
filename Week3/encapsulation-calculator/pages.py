@@ -1,6 +1,6 @@
 class Page(object):
     def __init__(self):
-        self.title = ''
+
         self.css = "css/style.css"
         self.get_name = ''
         self.course = Course()
@@ -45,7 +45,7 @@ class Page(object):
 					<div><p>The Black Course is a difficult and challenging course that should be played only by low-handicap golfers. The course is for walkers only and its slope rating is one of the highest in the northeast.</p></div>
 				</li></a>
 
-				<a href="/?name=TPC"><li class="thumbnail">
+				<a href="/?name=sawgrass"><li class="thumbnail">
 					<header>
 						<h2>TPC Sawgrass</h2>
 					</header>
@@ -75,7 +75,7 @@ class Page(object):
 					<div><p>Winged Foot is nothing less than the finest golf club in metropolitan New York. Given the wealth of great golf in the area, it is surely on the short list of contenders for the best golf club in the world.</p></div>
 				</li></a>
 
-				<a href="/?name=whistling"><li class="thumbnail">
+				<a href="/?name=straits"><li class="thumbnail">
 					<header>
 						<h2>Whistling Straits</h2>
 					</header>
@@ -109,10 +109,8 @@ class Page(object):
         <li id="selected">
 
             <figure>
-                <img src="/images/{self.get_name}.jpg" alt="{self.get_name}" width="640" height="427">
+                <img src="/images/{self.get_name}.jpg" alt="{self.get_name}" width="800" height="400">
             </figure>
-
-            <div>
                 <ul>
                     <li>
                         <h2>Yardage</h2>
@@ -130,17 +128,17 @@ class Page(object):
                         <h2>Bogey Rating</h2>
                         <p>{self.course.bogey_rating}</p>
                     </li>
-                </ul>
-            </div>
 
+                </ul>
         </li>
-    </div>
+    </ul>
+</div>
 </section>
 
         '''
 
     def page_result(self):
-        page_result = self.head + self.result + self.footer
+        page_result = self.head + self.result + self.body + self.footer
         page_result = page_result.format(**locals())
         return page_result
 
@@ -154,7 +152,7 @@ class Course(object):
     def __init__(self):
         self.name = ''
         self.yardage = 0
-        self.course_rating = 0
+        self.__course_rating = 0
         self.par = ''
         self.slope = 0
         self.__bogey_rating = 0 # this will be the number that a bogey golf should expect to score
@@ -170,3 +168,12 @@ class Course(object):
 
     def calc_rating(self):
         self.__bogey_rating = round(self.slope / 5.381 + self.course_rating, 2)
+
+    @property
+    def course_rating(self):
+        return self.__course_rating
+
+    @course_rating.setter
+    def course_rating(self, new_course_rating):
+        self.__course_rating =  new_course_rating
+

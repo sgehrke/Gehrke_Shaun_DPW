@@ -17,7 +17,7 @@
 .cf {
     *zoom: 1;
 }
- ul {
+ul {
 	 list-style-type: none;
  }
 header#main{
@@ -73,6 +73,10 @@ span {
 	height: 155px;
 	overflow: hidden;	
 }
+
+figure img{
+	box-shadow: 0px 0px 40px gray;
+}
 #selected {
 	padding: 28px;
 	line-height: 1.428571429;
@@ -87,11 +91,12 @@ span {
 	display: block;
 }
 
+
 #selected li {
 	display: block;
 	float: left;
 	width: 200px;
-	border: 1px red solid;
+	padding: 10px;
 }
 
 .thumbnail {
