@@ -77,7 +77,12 @@ class MainHandler(webapp2.RequestHandler):
         straits.calc_rating()
         print straits.bogey_rating
 
+        p.head = '''
+        <!doctype html>
+        <body>
+        '''
 
+        print c.name[0]
 # This is a really neat way to dynamically acess and use the objects
         if self.request.GET:
             p.get_name = self.request.GET['name'] # uses the to dynamically fill the image tag
@@ -85,6 +90,8 @@ class MainHandler(webapp2.RequestHandler):
             c = locals()[course] # refers c to the object course
             p.course = c # lets pages.py have access to c
 #both of the next lines print depending on conditional result
+            print "line 88"
+            print c
             self.response.write(p.page_result())
         else:
             self.response.write(p.print_page())
