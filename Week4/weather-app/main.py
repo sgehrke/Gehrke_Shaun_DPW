@@ -10,34 +10,97 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(p.print_out())
         if self.request.GET:
 
-            #get info from the API
-            url = 'http://xml.weather.yahoo.com/forecastrss?p=' + self.request.GET['zip']
-            #assemble the request
-            request = urllib2.Request(url)
-            #use the urllib2 library to create object to get url
-            opener = urllib2.build_opener()
-            #use the url to get a result - request info from the API
-            result = opener.open(request)
-            print result
+            wm = WeatherModel()
+            wm.zip = self.request.GET['zip']
+            wm.callApi()
 
-            #parse the xml
-            xmldoc = minidom.parse(result)
-            self.response.write(xmldoc.getElementsByTagName('title')[0].firstChild.nodeValue)
-            self.content = '<br/>'
-            list = xmldoc.getElementsByTagName('yweather:forecast')
-            for item in list:
+            wv = WeatherView()
+            wv.wdos = wm.dos
+
+
+            '''for item in list:
                 self.content += item.attributes['day'].value
                 self.content += "   HIGH: " + item.attributes['high'].value
                 self.content += "   LOW: " + item.attributes['low'].value
                 self.content += "   CONDITION: " + item.attributes['text'].value
                 self.content += ' <img src="images/'+ item.attributes['code'].value + '.png" width="30"/>'
                 self.content += '<br/>'
+                # self.response.write(xmldoc.getElementsByTagName('title')[0].firstChild.nodeValue)
+            self.response.write(self.content)'''
 
 
+class WeatherView(object):
+    '''
+    This class handles how data will be shown
+    '''
+    def __init__(self):
+        self.__wdos = []
+
+    @property
+    def wdos(self):
+        pass
+
+    @wdos.setter
+    def wdos(self,arr):
+        self.__wdos = arr
 
 
-            self.response.write(self.content)
+class WeatherModel(object):
+    ''' this model handles fetching parsing and sorting data form the API'''
+    def __init__(self):
+        self.url = url = 'http://xml.weather.yahoo.com/forecastrss?p='
+        self.__zip = ''
 
+    def callApi(self):
+        #REQUESTS AND LOADS INFOR FROM API
+        #assemble the request
+        request = urllib2.Request(self.url+self.__zip)
+        #use the urllib2 library to create object to get url
+        opener = urllib2.build_opener()
+        #use the url to get a result - request info from the API
+        result = opener.open(request)
+#parse the xml
+        xmldoc = minidom.parse(result)
+
+        #sorting the data
+        list = xmldoc.getElementsByTagName('yweather:forecast')
+        self._dos = []#array to store the data
+        for tag in list:
+            #create a data object
+            do = WeatherData()
+            do.day = tag.attributes['day'].value
+            do.high =  tag.attributes['high'].value
+            do.low =  tag.attributes['low'].value
+            do.code =  tag.attributes['code'].value
+            do.condition = '<img src="images/'+ tag.attributes['text'].value
+            do.date = tag.attributes['date'].value
+            self._dos.append(do)
+
+
+    @property
+    def dos(self):
+        return self._dos
+
+
+    @property
+    def zip(self):
+        pass
+
+    @zip.setter
+    def zip(self, z):
+        self.__zip = z
+
+class WeatherData(object):
+    ''' this data object holds the data fetched my the model shown by the view'''
+    def __index__(self):
+        #attributses for each thing I want to collect
+        self.day = ''
+        self.high = ''
+        self.low = ''
+        self.code = ''
+        self.condition = ''
+        self.date = ''
+        #designed to hold data in an associate array
 
 
 class Page(object):
