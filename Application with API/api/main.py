@@ -12,10 +12,11 @@ import json # makes json objects available
 #CONTROLLER
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        self.response.write('Hello world!')
+        p = Page()
+        #writes to the page
+        self.response.write(p.print_page())
 
-
-
+# this will connect the API and parse the json
 class ModelClass(object):
     def __init__(self):
         self.do = ''
@@ -46,7 +47,7 @@ class Page(object):
         self.body = '''filler'''
         self.close = '''footer'''
 
-    def pirnt_page(self):
+    def print_page(self):
         return self.head + self.body + self.close
 
 
