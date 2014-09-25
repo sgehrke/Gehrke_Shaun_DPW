@@ -9,9 +9,12 @@ class MainHandler(webapp2.RequestHandler):
         p._body = "Movie Finder"
         p.input = [['movie', 'text', 'Movie Name'],['Submit', 'submit']]
         self.response.write(p.print_out())
+
+
         if self.request.GET:
 
             #get info from the API
+
             url = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=' + self.request.GET['movie'].replace(' ', '+') + '&page_limit=10&page=1&apikey=cbafcpcvjzx3b9g673aytwjp'
             #assemble the request
             request = urllib2.Request(url)
@@ -24,11 +27,25 @@ class MainHandler(webapp2.RequestHandler):
             jsondoc = json.load(result)
             print jsondoc
 
-            title = jsondoc['movies'][0]['title']
-            self.response.write('Your Movie is: ' + title)
-            main = jsondoc['movies'][0]['posters']['original']
-            response = '<img src"' + main + '">'
-            self.response.write(response)
+            self.main_movie = jsondoc['movies'][0]
+            # self.response.write(self.main_movie['year'])
+            self.movie_title = '<br/>'
+
+            for item in self.main_movie:
+                print item
+                print item[0]
+                print item[1]
+                print item[2]
+
+
+                # self.response.write(item + '<br/>')
+            #     self.movie_title += item['mpaa_rating']
+            #     self.movie_title += item['synopsis']
+            #     self.movie_title += item['thumbnail']
+            #     self.movie_title += item['abridged_cast']
+            #     self.movie_title += item['characters']
+            #     self.movie_title += '<br/>'
+            # self.response.write(self.movie_title)
             #parse the json
 
 

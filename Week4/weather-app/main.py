@@ -7,7 +7,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         p = FormPage()
         p.input = [['zip', 'text', 'Zip Code'],['Submit', 'submit']]
-        self.response.write(p.print_out_form())
+        self.response.write(p.print_out())
         if self.request.GET:
 
             #get info from the API
@@ -23,6 +23,20 @@ class MainHandler(webapp2.RequestHandler):
             #parse the xml
             xmldoc = minidom.parse(result)
             self.response.write(xmldoc.getElementsByTagName('title')[0].firstChild.nodeValue)
+            self.content = '<br/>'
+            list = xmldoc.getElementsByTagName('yweather:forecast')
+            for item in list:
+                self.content += item.attributes['day'].value
+                self.content += "   HIGH: " + item.attributes['high'].value
+                self.content += "   LOW: " + item.attributes['low'].value
+                self.content += "   CONDITION: " + item.attributes['text'].value
+                self.content += ' <img src="images/'+ item.attributes['code'].value + '.png" width="30"/>'
+                self.content += '<br/>'
+
+
+
+
+            self.response.write(self.content)
 
 
 
@@ -43,9 +57,11 @@ class Page(object):
     def print_out(self):
         return self._head + self._body + self._close
 
+
+#extends Page - ***INHERITANCE ****
 class FormPage(Page):
     def __init__(self):
-        # constructor function fo the subclass
+        # constructor function fo the superclass
         super(FormPage, self).__init__()
         self._form_open = '<form method="GET">'
         self._form_close = '</form>'
@@ -73,8 +89,8 @@ class FormPage(Page):
         #sort throught the array of arrays and create html based on array
 
 
-
-    def print_out_form(self):
+# POLYMORHISM
+    def print_out(self):
         return self._head + self._body + self._form_open + self._form_inputs + self._form_close + self._close
 
 
