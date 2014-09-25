@@ -5,7 +5,7 @@ from xml.dom import minidom
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        p = FormPage()
+        p = Page()
         p.inputs = [['zip','text','zip code'],['Submit','submit']]
 
         if self.request.GET: # only if there is a zip variable in the url

@@ -15,51 +15,60 @@ class MainHandler(webapp2.RequestHandler):
         p = Page()#create instance of class page
         #writes to the page
         # sending information to the function by calling the setter by specifing the instance (Page)  with the setter eqialing the information
-        p.cast = [['hello'],['test'],['arr']]
         self.response.write(p.print_page())
-
-
-
-
+        if self.request.GET:
+            mc = MovieClass()
+            mc.title = self.request.GET['movie'].replace(' ', '+')
+            mc.callAPI()
+            
 
 # this will connect the API and parse the json
-class ModelClass(object):
+class MovieClass(object):
+    ''' This model handles fetching, parsing, and sorting data from the API'''
     def __init__(self):
         #get info from the API
-        self.url = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=' + self.request.GET['movie'].replace(' ', '+') + '&page_limit=10&page=1&apikey=cbafcpcvjzx3b9g673aytwjp'
-    # assemble the request
-        self.request = urllib2.Request(self.url)
-        #use the urllib2 library to create object to get url
-        self.opener = urllib2.build_opener()
-        #use the url to get a result - request info from the API
-        self.result = opener.open(self.request)
+        self.__url_open = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?q='     #My API Key
+        self.__url_close = '&page_limit=10&page=1&apikey=cbafcpcvjzx3b9g673aytwjp'
+        self.__title = ''
+        # calls the json document
+        self.__jsondoc = ''
 
-        #parse the json
-        self.jsondoc = json.load(self.result)
+    def callAPI(self):
+        # Requests and loads data from API
+        request = urllib2.Request(self.__url_open + self.__title + self.__url_close)
+        # Creates an object (using urllib2) to retrieve the url
+        opener = urllib2.build_opener()
+        # Requests data from API based on url
+        result = opener.open(request)
 
-        list = jsondoc['movies'][0]
-        self.content = '<br/>'
-        self.dos = []
-        for tag in list:
-            self.write.response(tag)
-            do = ModelData()
-            do.title = tag['movies'][0]['title']
-            do.year = tag['year']
-        #create variable for the json data
- #######Stuck here tryng to get JSON YEAR to show because its in an array
-
-        # self.title = jsondoc['movies'][0]['title']
-        # self.response.write('Your Movie is: ' + self.title)
-        # self.main = jsondoc['movies'][0]['posters']['original']
-        # response = '<img src"' + self.main + '">'
-        # self.response.write(response)
+        # Parses JSON data
+        self.__jsondoc = json.load(result)
 
 
-class ModelData(object):
+
+
+
+
+
+
+
+    '''@property
+    def do(self):
+        return self.__do'''
+
+    @property
+    def title(self):
+        pass
+
+    @title.setter
+    def title(self, new):
+        self.__title = new
+
+class MovieData(object):
     ''' this data object holds the data fetched by the model'''
     def __init__(self):
         self.title = ''
-        self.year = ''
+        self.year = 0
         self.rating = ''
         self.synopsis = ''
         self.poster = ''
@@ -79,13 +88,18 @@ class Page(object):
     </head>
     <body>'''
         self._body = 'MY API'
+        self.form = '''
+        <form method="GET">
+            <input type="text" name="movie" required="" placeholder="Search Movies Here"/>
+            <input type="submit" value="Submit"/>
+        </form>'''
 
         self._close = '''
     </body>
 </html>'''
 
     def print_page(self):
-        return self._head + self._body  + self._close
+        return self._head + self._body  + self.form + self._close
 
 
 # #INHERITENCE
