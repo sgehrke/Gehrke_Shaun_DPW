@@ -9,12 +9,20 @@ import webapp2
 import urllib2 #Python classes and code needed to request info
 import json # makes json objects available
 
-
+#CONTROLLER
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write('Hello world!')
-# Model class created as a constructor for the data
-class ModelClass()
+
+
+
+class ModelClass(object):
+    def __init__(self):
+        self.do = ''
+
+
+
+class ModelData(object):
     def __init__(self):
         self.title = ''
         self.year = ''
@@ -27,3 +35,36 @@ class ModelClass()
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
 ], debug=True)
+
+
+# VIEW with pages
+class Page(object):
+    def __init__(self):
+        #template fot the page
+
+        self.head = '''header'''
+        self.body = '''filler'''
+        self.close = '''footer'''
+
+    def pirnt_page(self):
+        return self.head + self.body + self.close
+
+
+
+# popoulates model class with insatnces of it...use if request GET to fill ...like this movie = ModelClass()
+#                             movie.title = self...GET MOVIE TITLE
+
+
+
+#RESULTS CLASS to display the updated nfo to HTML in View/Page class
+
+#GETTER_SETTERS
+
+#ABSTRACTION
+
+
+
+
+#POLYMORPHISM
+
+
