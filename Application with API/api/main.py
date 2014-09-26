@@ -15,27 +15,29 @@ class MainHandler(webapp2.RequestHandler):
         p = Page()#create instance of class page
         #writes to the page
         # sending information to the function by calling the setter by specifing the instance (Page)  with the setter eqialing the information
-        self.response.write(p.print_page())
+
         if self.request.GET:
             mc = MovieClass()
             mc.title = self.request.GET['movie'].replace(' ', '+')
             mc.callAPI()
 
-            wv = MovieView()
-            wv.api_info = mc.dos
-            print
+            mv = MovieView()
+            mv.api_info = mc.dos
+            self.response.write(mv.api_info)
+            # populates with content variable mv
+            # p._body = mc.content
 
+        self.response.write(p.print_page())
 
 class MovieView(object):
     ''' This class handles how the user is shown the data
     '''
     def __init__(self):
         #data object to be populated by the movie class
-        self.api_info = MovieData()
+        self.api_info = []
 
-    # def update(self):
-    #     for tag in self.model:
-    #         print tag
+        self.content = ''
+
 
 
 # this will connect the API and parse the json
