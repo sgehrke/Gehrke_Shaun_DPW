@@ -40,7 +40,10 @@ class MovieView(object):
 
     def update(self):
         for do in self.__wdos:
-            self.__content += do.title
+            content_head = do.title
+            main_content = do.synopsis
+            content_close = ''
+            self.__content = content_head + main_content + content_close
 
 
     @property
