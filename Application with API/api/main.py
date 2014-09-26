@@ -25,7 +25,6 @@ class MainHandler(webapp2.RequestHandler):
             mv = MovieView()
             mv.wdos = mm.dos # takes data on objects from model class
             self.response.write(mv.content)
-            # populates with content variable mv
             # p._body = mc.content
 
         self.response.write(p.print_page())
@@ -41,8 +40,7 @@ class MovieView(object):
 
     def update(self):
         for do in self.__wdos:
-            self.content += do.title
-        self.content = ''
+            self.__content += do.title
 
 
     @property
