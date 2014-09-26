@@ -23,9 +23,9 @@ class MainHandler(webapp2.RequestHandler):
 
 
             mv = MovieView()
-            mv.wdos = mm.dos # takes data on objects from model class
-            self.response.write(mv.content)
-            # p._body = mc.content
+            mv.mdos = mm.dos # takes data on objects from model class
+            p.body = mv.content
+
 
         self.response.write(p.print_page())
 
@@ -34,28 +34,31 @@ class MovieView(object):
     '''
     def __init__(self):
         #data object to be populated by the movie class
-        self.__wdos = []
+        self.__mdos = []
         self.__content = '<br/>'
 
 
     def update(self):
-        for do in self.__wdos:
-            content_head = do.title
+        for do in self.__mdos:
+            content_head = '''
+            <section>
+                <h2>''' + do.title + '''<h2/>'''
             main_content = do.synopsis
-            content_close = ''
+            content_close = '''
+            </section>'''
             self.__content = content_head + main_content + content_close
-
+            print self.__content
 
     @property
     def content(self):
         return self.__content
     @property
-    def wdos(self):
+    def mdos(self):
         pass
 
-    @wdos.setter
-    def wdos(self, arr):
-        self.__wdos = arr
+    @mdos.setter
+    def mdos(self, arr):
+        self.__mdos = arr
         self.update()
 
 # this will connect the API and parse the json
