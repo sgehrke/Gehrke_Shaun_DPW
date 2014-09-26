@@ -19,8 +19,8 @@ class MainHandler(webapp2.RequestHandler):
         if self.request.GET:
             mc = MovieClass()
             mc.title = self.request.GET['movie'].replace(' ', '+')
-            mc.callAPI()
-            
+            # mc.callAPI()
+
 
 # this will connect the API and parse the json
 class MovieClass(object):
@@ -31,7 +31,7 @@ class MovieClass(object):
         self.__url_close = '&page_limit=10&page=1&apikey=cbafcpcvjzx3b9g673aytwjp'
         self.__title = ''
         # calls the json document
-        self.__jsondoc = ''
+        self.jsondoc = ''
 
     def callAPI(self):
         # Requests and loads data from API
@@ -42,8 +42,13 @@ class MovieClass(object):
         result = opener.open(request)
 
         # Parses JSON data
-        self.__jsondoc = json.load(result)
-
+        self.jsondoc = json.load(result)
+        list = self.jsondoc['movies']
+        self.response.write(list)
+        self._dos = []
+        for tag in list:
+            do = MovieData()
+            do.title = tag['title']
 
 
 
@@ -69,7 +74,7 @@ class MovieData(object):
     def __init__(self):
         self.title = ''
         self.year = 0
-        self.rating = ''
+        self.mpaa_rating = ''
         self.synopsis = ''
         self.poster = ''
         self.cast = []
