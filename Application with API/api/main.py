@@ -27,6 +27,7 @@ class MainHandler(webapp2.RequestHandler):
             p._body = mv.content
 
 
+
         self.response.write(p.print_page())
 
 class MovieView(object):
@@ -38,16 +39,50 @@ class MovieView(object):
         self.__content = '<br/>'
 
 
+
     def update(self):
         for do in self.__wdos:
+
             content_head = '''
-            <section>
-                <header>
-                    <h2>''' + do.title + '''<span>(''' + str(do.year) + ''')</span></h2>
-                </header>'''
-            main_content = '''<img src="''' + do.poster + '''"></img>'''
-            content_close = ''
-            self.__content = content_head + main_content + content_close
+            <section> '''
+
+            main_content = '''
+                <div class="container">
+                    <img width="400" src="''' + do.poster + '''"></img>
+                    <div id="main">
+                        <h2>''' + do.title + '''</h2>
+                        <ul>
+                            <li>Year: ''' + str(do.year) + '''</li>
+                            <li>Rating: ''' + do.mpaa_rating + '''</li>
+                            <li>Runtime: ''' + str(do.runtime) + '''</li>
+                            <li>Main Character: ''' + do.char + '''</li>
+
+                        </ul>
+                    </div>
+                </div>
+                    '''
+
+#couldnt figure this art out so I changed attributes
+
+
+            # cast_members = ''
+            # print cast_members
+            # for item in do.cast:
+            #     # Retrieves each cast member if available
+            #     try:
+            #         cast_members += do.cast[item]
+            #     except:
+            #         cast_members += ''
+            #     try:
+            #         cast_members += do.characters[item]
+            #     except:
+            #         cast_members += ''
+
+            content_close = '''
+            </section>
+            </div>
+            <footer class="footer">Shaun Gehrke DPW 1409</footer>'''
+            self.__content = content_head + main_content +  content_close
 
 
     @property
@@ -93,9 +128,8 @@ class MovieModel(object):
             do.title = self.jsondoc['movies'][0]['title']
             do.year = self.jsondoc['movies'][0]['year']
             do.mpaa_rating = self.jsondoc['movies'][0]['mpaa_rating']
-            do.synopsis = self.jsondoc['movies'][0]['synopsis']
             do.poster =self.jsondoc['movies'][0]['posters']['original'].replace('_tmb.jpg', '_ori.jpg')
-            do.cast = self.jsondoc['movies'][0]['abridged_cast']
+            do.runtime = self.jsondoc['movies'][0]['runtime']
             do.char = self.jsondoc['movies'][0]['abridged_cast'][0]['characters'][0]
             self._dos.append(do)
 
@@ -118,10 +152,9 @@ class MovieData(object):
         self.title = ''
         self.year = 0
         self.mpaa_rating = ''
-        self.synopsis = ''
+        self.runtime = 0
         self.poster = ''
-        self.cast = []
-        self.char = []
+        self.char = ''
 
 
 # VIEW with pages
@@ -133,15 +166,20 @@ class Page(object):
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<link rel="stylesheet" href="style.css" title="css" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="css/style.css" title="css" type="text/css" media="screen" charset="utf-8">
 	<title>Movie Case</title>
 </head>'''
         self._body = 'MY API'
         self.form = '''
-        <form method="GET">
-            <input type="text" name="movie" required="" placeholder="Search Movies Here"/>
-            <input type="submit" value="Submit"/>
-        </form>'''
+        <header>
+            <div class="container">
+            <h1>Movie Case</>
+            <form method="GET" class="right">
+                <input  class="right"type="text" name="movie" required="" placeholder="Search Movies Here"/>
+                <input  class="right"type="submit" value="Submit"/>
+            </form>
+            </div>
+        </header>'''
 
         self._close = '''
     </body>
@@ -180,7 +218,6 @@ class Page(object):
 
 #RESULTS CLASS to display the updated nfo to HTML in View/Page class
 
-#GETTER_SETTERS
 
 #ABSTRACTION
 

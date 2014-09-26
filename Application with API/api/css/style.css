@@ -1,3 +1,50 @@
-html {
-	background: grey;
+* {
+	margin: 0;
+	padding: 0;
 }
+ul {
+	list-style-type: none;
+}
+header {
+	background: black;
+}
+.container {
+padding: 50px;
+	margin: 0 auto;
+	width: 960px;
+	overflow: hidden;
+}
+h1 {
+	color: white;
+}
+h2 {
+	font-size: 3em;
+	text-align: center;
+}
+img {
+	float: left;
+}
+
+#main {
+	padding: 20px;
+	overflow: hidden;
+}
+
+footer {
+text-align: center;
+
+	line-height: 100px;
+	height: 100px;
+	color: white;
+	clear: both;
+	background: black;
+}
+
+li:nth-of-type(2n+1) {
+	background: #e1e1e1;
+}
+ 
+ li {
+	 font-size: 2em;
+ }
+
