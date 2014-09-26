@@ -14,7 +14,6 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         p = Page()#create instance of class page
         #writes to the page
-        p.inputs = [['zip','text','zip code'],['Submit','submit']]
         # sending information to the function by calling the setter by specifing the instance (Page)  with the setter eqialing the information
         self.response.write(p.print_page())
         if self.request.GET:
@@ -22,8 +21,8 @@ class MainHandler(webapp2.RequestHandler):
             mc.title = self.request.GET['movie'].replace(' ', '+')
             mc.callAPI()
 
-
-
+            wv = MovieView()
+            wv.api_info = mc.do
 
 
 class MovieView(object):
@@ -31,10 +30,11 @@ class MovieView(object):
     '''
     def __init__(self):
         #data object to be populated by the movie class
+        self.api_info = MovieData()
 
-
-    def update(self):
-        pass # for now...this will update the results
+    # def update(self):
+    #     for tag in self.model:
+    #         print tag
 
 
 # this will connect the API and parse the json
@@ -55,12 +55,11 @@ class MovieClass(object):
         opener = urllib2.build_opener()
         # Requests data from API based on url
         result = opener.open(request)
-'''LESSENED THE SCOPE TO ONLY DISPLAY ONE MOVIE'''
+
         # Parses JSON data
         self.jsondoc = json.load(result)
         list = self.jsondoc['movies'][0]
-        for item in list:
-            print item + '<br/>'
+
         do = MovieData()
         do.title = self.jsondoc['movies'][0]['title']
         do.year = self.jsondoc['movies'][0]['year']
@@ -69,8 +68,6 @@ class MovieClass(object):
         # do.poster = self.jsondoc['movies'][0]['poster']
         do.cast = self.jsondoc['movies'][0]['abridged_cast']
         do.char = self.jsondoc['movies'][0]['abridged_cast'][0]['characters'][0]
-
-        print do.char
 
 
 
