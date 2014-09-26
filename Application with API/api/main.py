@@ -23,8 +23,8 @@ class MainHandler(webapp2.RequestHandler):
 
 
             mv = MovieView()
-            mv.mdos = mm.dos # takes data on objects from model class
-            p.body = mv.content
+            mv.wdos = mm.dos # takes data on objects from model class
+            p._body = mv.content
 
 
         self.response.write(p.print_page())
@@ -34,31 +34,32 @@ class MovieView(object):
     '''
     def __init__(self):
         #data object to be populated by the movie class
-        self.__mdos = []
+        self.__wdos = []
         self.__content = '<br/>'
 
 
     def update(self):
-        for do in self.__mdos:
+        for do in self.__wdos:
             content_head = '''
             <section>
-                <h2>''' + do.title + '''<h2/>'''
-            main_content = do.synopsis
-            content_close = '''
-            </section>'''
+                <header>
+                    <h2>''' + do.title + '''<span>(''' + str(do.year) + ''')</span></h2>
+                </header>'''
+            main_content = '''<img src="''' + do.poster + '''"></img>'''
+            content_close = ''
             self.__content = content_head + main_content + content_close
-            print self.__content
+
 
     @property
     def content(self):
         return self.__content
     @property
-    def mdos(self):
+    def wdos(self):
         pass
 
-    @mdos.setter
-    def mdos(self, arr):
-        self.__mdos = arr
+    @wdos.setter
+    def wdos(self, arr):
+        self.__wdos = arr
         self.update()
 
 # this will connect the API and parse the json
@@ -82,7 +83,7 @@ class MovieModel(object):
 
         # Parses JSON data
         self.jsondoc = json.load(result)
-        list = self.jsondoc['movies'][0]
+        list = self.jsondoc['movies']
         self._dos = []
 
 
@@ -93,7 +94,7 @@ class MovieModel(object):
             do.year = self.jsondoc['movies'][0]['year']
             do.mpaa_rating = self.jsondoc['movies'][0]['mpaa_rating']
             do.synopsis = self.jsondoc['movies'][0]['synopsis']
-            # do.poster = self.jsondoc['movies'][0]['poster']
+            do.poster =self.jsondoc['movies'][0]['posters']['original'].replace('_tmb.jpg', '_ori.jpg')
             do.cast = self.jsondoc['movies'][0]['abridged_cast']
             do.char = self.jsondoc['movies'][0]['abridged_cast'][0]['characters'][0]
             self._dos.append(do)
@@ -129,11 +130,12 @@ class Page(object):
     def __init__(self): # constructor function
         self._head = '''
 <!DOCTYPE HTML>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>'''
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="style.css" title="css" type="text/css" media="screen" charset="utf-8">
+	<title>Movie Case</title>
+</head>'''
         self._body = 'MY API'
         self.form = '''
         <form method="GET">
@@ -146,7 +148,7 @@ class Page(object):
 </html>'''
 
     def print_page(self):
-        return self._head + self._body  + self.form + self._close
+        return self._head + self.form + self._body + self._close
 
 
 # #INHERITENCE
