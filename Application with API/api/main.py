@@ -22,7 +22,8 @@ class MainHandler(webapp2.RequestHandler):
             mc.callAPI()
 
             wv = MovieView()
-            wv.api_info = mc.do
+            wv.api_info = mc.dos
+            print
 
 
 class MovieView(object):
@@ -59,16 +60,22 @@ class MovieClass(object):
         # Parses JSON data
         self.jsondoc = json.load(result)
         list = self.jsondoc['movies'][0]
+        self._dos = []
+        for tag in list:
 
-        do = MovieData()
-        do.title = self.jsondoc['movies'][0]['title']
-        do.year = self.jsondoc['movies'][0]['year']
-        do.mpaa_rating = self.jsondoc['movies'][0]['mpaa_rating']
-        do.synopsis = self.jsondoc['movies'][0]['synopsis']
-        # do.poster = self.jsondoc['movies'][0]['poster']
-        do.cast = self.jsondoc['movies'][0]['abridged_cast']
-        do.char = self.jsondoc['movies'][0]['abridged_cast'][0]['characters'][0]
+            do = MovieData()
+            do.title = self.jsondoc['movies'][0]['title']
+            do.year = self.jsondoc['movies'][0]['year']
+            do.mpaa_rating = self.jsondoc['movies'][0]['mpaa_rating']
+            do.synopsis = self.jsondoc['movies'][0]['synopsis']
+            # do.poster = self.jsondoc['movies'][0]['poster']
+            do.cast = self.jsondoc['movies'][0]['abridged_cast']
+            do.char = self.jsondoc['movies'][0]['abridged_cast'][0]['characters'][0]
+            self._dos.append(do)
 
+    @property
+    def dos(self):
+        return self._dos
 
 
     @property
