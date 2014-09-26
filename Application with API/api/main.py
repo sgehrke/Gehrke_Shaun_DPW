@@ -19,12 +19,12 @@ class MainHandler(webapp2.RequestHandler):
         if self.request.GET:
             mm = MovieModel()
             mm.title = self.request.GET['movie'].replace(' ', '+')
-            mm.callAPI()
-            print mm.dos
+            mm.callAPI()# connects it to API
+
 
             mv = MovieView()
-            mv.api_info = mm.dos
-            self.response.write(mv.api_info)
+            mv.wdos = mm.dos # takes data on objects from model class
+            self.response.write(mv.content)
             # populates with content variable mv
             # p._body = mc.content
 
@@ -35,11 +35,27 @@ class MovieView(object):
     '''
     def __init__(self):
         #data object to be populated by the movie class
-        self.api_info = []
+        self.__wdos = []
+        self.__content = '<br/>'
 
+
+    def update(self):
+        for do in self.__wdos:
+            self.content += do.title
         self.content = ''
 
 
+    @property
+    def content(self):
+        return self.__content
+    @property
+    def wdos(self):
+        pass
+
+    @wdos.setter
+    def wdos(self, arr):
+        self.__wdos = arr
+        self.update()
 
 # this will connect the API and parse the json
 class MovieModel(object):
